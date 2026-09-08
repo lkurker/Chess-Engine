@@ -1,0 +1,30 @@
+body {
+    background-color: cyan;
+}
+
+
+.chessBoard{
+
+    position: absolute;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    background-color: brown;
+    top: 30px;
+    left: 400px;
+    height: 700px;
+    width: 700px;
+
+}
+
+.whiteSquare{
+
+    background-color: white;
+
+}
+
+.blackSquare{
+
+    background-color: black;
+
+}
