@@ -12,7 +12,7 @@ class Board{
 
     private:
 
-        std::string board[8][8];
+        Piece board[8][8];
 
     public: 
 
@@ -20,6 +20,7 @@ class Board{
 
         void displayBoard();
 
+        
 
 
 
