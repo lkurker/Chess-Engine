@@ -21,7 +21,7 @@ class Piece{
         Piece();
         Piece(std::string name, std::string color);
 
-        bool legalMove(std::string newPosition);
+        
         std::string getColor();
         std::string getPosition();
         std::string getName();

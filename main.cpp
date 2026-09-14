@@ -15,6 +15,8 @@ int main(){
     std::string startPos;
     std::string endPos;
 
+    
+
     //std::cout << "Please input the piece color! ";
     //std::cin >> color;
     //std::cout << "" << std::endl;
@@ -22,6 +24,7 @@ int main(){
     bool keepGoing = true;
     Rules r;
 
+    
     while(keepGoing){
 
         std::cout << "Please input the start position! ";

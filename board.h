@@ -4,7 +4,7 @@
 #define BOARD_H_EXISTS
 
 #include <iostream>
-#include "piece.h"
+#include <vector>
 
 
 class Board{
@@ -12,13 +12,14 @@ class Board{
 
     private:
 
-        Piece board[8][8];
+        std::vector<std::vector<std::string>> board{8, std::vector<std::string>(8)};
 
     public: 
 
         Board();
 
         void displayBoard();
+        std::vector<std::vector<std::string>>& getBoard();
 
         
 
