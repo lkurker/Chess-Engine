@@ -103,8 +103,19 @@ int main(){
     
     Board b;
     
-    board = b.setSquare(board, "b1");
-    b.displayBoard(board);
+    uint64_t whitePieces = 0;
+    whitePieces = b.setSquare(whitePieces, "e3");
+    whitePieces = b.setSquare(whitePieces, "e2");
+    whitePieces = b.toggleSquare(whitePieces, "e4");
+    uint64_t blackPieces = 0;
+    uint64_t occupied = whitePieces | blackPieces;
+    uint64_t empty = ~occupied;
+
+
+    
+    b.displayBoard(whitePieces);
+    //b.displayBoard(occupied);
+    
     
 
     return 0;

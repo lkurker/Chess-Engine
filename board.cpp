@@ -53,6 +53,17 @@ Board::Board(){
 
 }//end constructor
 
+
+int Board::getPosition(std::string position){
+
+    int rank = (position[1] - 1) * 8;
+    int file = position[0] - 'a';
+
+    int chessPosition = rank + file;
+    return chessPosition;
+
+}//end getPosition
+
 void Board::displayBoard(uint64_t board){
 
     std::cout << "   abcdefgh" << std::endl;
@@ -84,16 +95,64 @@ void Board::displayBoard(uint64_t board){
 }//end displayBoard
 
 //This function is only used to turn one piece of the bitboard on at a given position
-uint64_t Board::setSquare(uint64_t chessBoard, std::string position){
+uint64_t Board::setSquare(uint64_t board, std::string position){
 
-    int rank = (position[1] - 1) * 8;
-    int file = position[0] - 'a';
+    int chessPosition = getPosition(position);
+    
+    board = board | (1ULL << chessPosition);
 
-    int chessPosition = rank + file;
-    chessBoard = chessBoard | (1ULL << chessPosition);
-
-    return chessBoard;
+    return board;
 
 
 }//end setSquare
+
+uint64_t Board::clearSquare(uint64_t board, std::string position){
+
+    int chessPosition = getPosition(position);
+
+    uint64_t mask = 1ULL << chessPosition;
+    board &= ~mask;
+
+    return board;
+
+
+}//end clearSquare
+
+
+uint64_t Board::toggleSquare(uint64_t board, std::string position){
+
+    int chessPosition = getPosition(position);
+    uint64_t mask = 1ULL << chessPosition;
+    board = board ^ mask;
+    return board;
+
+
+}//end toggleSquare
+
+
+ //Checking to see if the board is set at a specific position
+bool Board::isSquareSet(uint64_t board, std::string position){
+
+    int chessPosition = getPosition(position);
+    
+    return board & (1ULL << chessPosition);
+
+}//end isSquareSet
+
+//Getters for returning occupied and empty spaces depending on the bitboards that are passed as parameters
+uint64_t Board::getOccupied(uint64_t whitePieces, uint64_t blackPieces){
+
+    uint64_t occupied = whitePieces | blackPieces;
+    return occupied;
+
+}//end getOccupied
+
+uint64_t Board::getEmpty(uint64_t whitePieces, uint64_t blackPieces){
+
+    uint64_t empty = ~(whitePieces | blackPieces);
+    return empty;
+
+}//end getEmpty
+
+
 

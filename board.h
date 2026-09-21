@@ -18,8 +18,14 @@ class Board{
 
         Board();
 
-        void displayBoard(uint64_t chessBoard);
-        uint64_t setSquare(uint64_t chessBoard, std::string position);
+        void displayBoard(uint64_t board);
+        uint64_t setSquare(uint64_t board, std::string position);
+        bool isSquareSet(uint64_t board, std::string position);
+        uint64_t clearSquare(uint64_t board, std::string position);
+        uint64_t toggleSquare(uint64_t board, std::string position);
+        int getPosition(std::string position);
+        uint64_t getOccupied(uint64_t whitePieces, uint64_t blackPieces);
+        uint64_t getEmpty(uint64_t whitePieces, uint64_t blackPieces);
 
         
 
