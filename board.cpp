@@ -4,50 +4,11 @@
 
 Board::Board(){
 
-    //Array of piece names to make setting the board up easier
-    std::string whitePieces[8] = {"R", "N", "B", "Q", "K", "B", "N", "R"};
-    std::string blackPieces[8] = {"r", "n", "b", "q", "k", "b", "n", "r"};
-
-
-
+    //We will set the constant files in order to determine whether a piece can shift right or left
     for(int i = 0; i < 8; i++){
 
-        for(int j = 0; j < 8; j++){
-
-            //certain conditions will be set for pieces in the top or bottom two rows
-            if(i == 0){
-
-                board[i][j] = blackPieces[j];
-
-            }//end if statement
-
-            else if(i == 1){
-
-                board[i][j] = "p";
-
-            }//end else if statement
-
-            else if(i == 6){
-
-                board[i][j] = "P";
-
-            }//end else if statement
-
-            else if(i == 7){
-
-                board[i][j] = whitePieces[j];
-
-            }//end else if statement
-
-
-            else{
-
-                board[i][j] = ".";
-
-            }//end else statement
-            
-
-        }//end for loop
+        A_FILE = A_FILE | 1ULL << (i * 8);
+        H_FILE = H_FILE | 1ULL << ((i * 8) + 7);
 
     }//end for loop
 
@@ -153,6 +114,53 @@ uint64_t Board::getEmpty(uint64_t whitePieces, uint64_t blackPieces){
     return empty;
 
 }//end getEmpty
+
+//Testing bitboard shifts. This function may not be used in the final implementation
+uint64_t Board::shiftUp(uint64_t board){
+
+    board = board << 8;
+    return board;
+
+}//end shiftUp
+
+uint64_t Board::shiftDown(uint64_t board){
+
+    board = board >> 8;
+    return board;
+
+}//end shiftDown
+
+//Shifting pieces left and right. NOTE: This will be shifting left and right from the board's perspective,
+//and since this is inverted to how shifting left and right is for bitwise operations, the operations are
+//purposefully flipped for these methods specifically.
+uint64_t Board::shiftLeft(uint64_t board){
+
+    board = (board & ~(getA_File())) >> 1;
+    return board;
+
+}//end shiftLeft
+
+uint64_t Board::shiftRight(uint64_t board){
+
+    board = (board & ~(getH_File())) << 1;
+    return board;
+
+}//end shiftRight
+
+
+
+//getters for the A and H files
+uint64_t Board::getA_File(){
+
+    return A_FILE;
+
+}//end getA_File
+
+uint64_t Board:: getH_File(){
+
+    return H_FILE;
+
+}//end getH_File
 
 
 

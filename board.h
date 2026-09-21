@@ -12,7 +12,8 @@ class Board{
 
     private:
 
-        std::vector<std::vector<std::string>> board{8, std::vector<std::string>(8)};
+        uint64_t A_FILE = 0;
+        uint64_t H_FILE = 0;
 
     public: 
 
@@ -26,7 +27,12 @@ class Board{
         int getPosition(std::string position);
         uint64_t getOccupied(uint64_t whitePieces, uint64_t blackPieces);
         uint64_t getEmpty(uint64_t whitePieces, uint64_t blackPieces);
-
+        uint64_t shiftUp(uint64_t board);
+        uint64_t shiftDown(uint64_t board);
+        uint64_t shiftLeft(uint64_t board);
+        uint64_t shiftRight(uint64_t board);
+        uint64_t getA_File();
+        uint64_t getH_File();
         
 
 

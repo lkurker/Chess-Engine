@@ -106,16 +106,30 @@ int main(){
     uint64_t whitePieces = 0;
     whitePieces = b.setSquare(whitePieces, "e3");
     whitePieces = b.setSquare(whitePieces, "e2");
-    whitePieces = b.toggleSquare(whitePieces, "e4");
+    whitePieces = b.toggleSquare(whitePieces, "a4");
     uint64_t blackPieces = 0;
-    uint64_t occupied = whitePieces | blackPieces;
-    uint64_t empty = ~occupied;
+    blackPieces = b.setSquare(blackPieces, "h8");
+    blackPieces = b.setSquare(blackPieces, "h7");
+    blackPieces = b.setSquare(blackPieces, "f6");
+    uint64_t occupied = b.getOccupied(whitePieces, blackPieces);
+    uint64_t empty = b.getEmpty(whitePieces, blackPieces);
 
+    uint64_t shiftBoard = 0;
+    shiftBoard = b.setSquare(shiftBoard, "a2");
+    shiftBoard = b.setSquare(shiftBoard, "b2");
+    shiftBoard = b.setSquare(shiftBoard, "c2");
+    shiftBoard = b.setSquare(shiftBoard, "d2");
+    shiftBoard = b.setSquare(shiftBoard, "e2");
+    shiftBoard = b.setSquare(shiftBoard, "f2");
+    shiftBoard = b.setSquare(shiftBoard, "g2");
+    shiftBoard = b.setSquare(shiftBoard, "h2");
 
+    
+    shiftBoard = b.shiftUp(shiftBoard);
     
     b.displayBoard(whitePieces);
-    //b.displayBoard(occupied);
-    
+    whitePieces = b.shiftLeft(whitePieces);
+    b.displayBoard(whitePieces);
     
 
     return 0;
