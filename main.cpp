@@ -3,13 +3,11 @@
 #include "board.h"
 #include "piece.h"
 #include "rules.h"
+#include <cstdint>
 
 int main(){
 
-    
-
-    //Board b;
-    //b.displayBoard();
+    /*
 
     //std::string color;
     std::string startPos;
@@ -69,8 +67,44 @@ int main(){
 
     }//end while loop
 
-    
+    */
 
+    uint64_t x = 0b0000;
+
+    //Turning on a bit
+    x = x | (1ULL << 5);
+    x = x | (1ULL << 7);
+    x = x | (1ULL << 3);
+    x = x | (1ULL << 0);
+
+
+
+    /*
+    //Checking if a bit is on
+    if(x & (1ULL << 2)){
+
+        std::cout << "Bit is on!" << std::endl;
+
+    }
+
+    else{
+
+        std::cout << "Bit is not on!" << std::endl;
+
+    }
+
+    */
+
+    uint64_t board = 0;
+
+    
+    board = board | (1ULL << 35);
+    board = board | (1ULL << 62);
+    
+    Board b;
+    
+    board = b.setSquare(board, "b1");
+    b.displayBoard(board);
     
 
     return 0;

@@ -18,8 +18,8 @@ class Board{
 
         Board();
 
-        void displayBoard();
-        std::vector<std::vector<std::string>>& getBoard();
+        void displayBoard(uint64_t chessBoard);
+        uint64_t setSquare(uint64_t chessBoard, std::string position);
 
         
 

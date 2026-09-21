@@ -1,14 +1,11 @@
 CC = g++
 CFLAGS = -g -Wall
 
-main: piece.o board.o rules.o main.o
-	$(CC) $(CFLAGS) piece.o board.o rules.o main.o -o main
+main: board.o rules.o main.o
+	$(CC) $(CFLAGS) board.o rules.o main.o -o main
 
-board.o: board.cpp board.h piece.h
+board.o: board.cpp board.h
 	$(CC) $(CFLAGS) -c board.cpp
-
-piece.o: piece.cpp piece.h
-	$(CC) $(CFLAGS) -c piece.cpp
 
 rules.o: rules.cpp rules.h
 	$(CC) $(CFLAGS) -c rules.cpp

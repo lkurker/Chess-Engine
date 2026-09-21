@@ -53,14 +53,27 @@ Board::Board(){
 
 }//end constructor
 
-void Board::displayBoard(){
+void Board::displayBoard(uint64_t board){
 
-    for(int i = 0; i < 8; i++){
+    std::cout << "   abcdefgh" << std::endl;
+
+    for(int i = 7; i > -1; i--){
+
+        std::cout << (i + 1) << "  ";
 
         for(int j = 0; j < 8; j++){
 
-            std::cout << board[i][j];
-            std::cout << " ";
+            if(board & (1ULL << (i*8 + j))){
+
+                std::cout << "1";
+
+            }//end if statement
+
+            else{
+
+                std::cout << "0";
+
+            }//end else statement
 
         }//end for loop
 
@@ -70,8 +83,17 @@ void Board::displayBoard(){
 
 }//end displayBoard
 
-std::vector<std::vector<std::string>>& Board::getBoard(){
+//This function is only used to turn one piece of the bitboard on at a given position
+uint64_t Board::setSquare(uint64_t chessBoard, std::string position){
 
-    return board;
+    int rank = (position[1] - 1) * 8;
+    int file = position[0] - 'a';
 
-}//end getBoard
+    int chessPosition = rank + file;
+    chessBoard = chessBoard | (1ULL << chessPosition);
+
+    return chessBoard;
+
+
+}//end setSquare
+
