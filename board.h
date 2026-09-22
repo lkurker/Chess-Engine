@@ -14,6 +14,8 @@ class Board{
 
         uint64_t A_FILE = 0;
         uint64_t H_FILE = 0;
+        uint64_t kingMovement = 0;
+        uint64_t knightMovement = 0;
 
     public: 
 
@@ -33,6 +35,10 @@ class Board{
         uint64_t shiftRight(uint64_t board);
         uint64_t getA_File();
         uint64_t getH_File();
+        uint64_t getKingMovement();
+        uint64_t getKnightMovement();
+        void potentialKingMoves(uint64_t kings);
+        void potentialKnightMoves(uint64_t knights);
         
 
 

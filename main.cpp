@@ -124,12 +124,13 @@ int main(){
     shiftBoard = b.setSquare(shiftBoard, "g2");
     shiftBoard = b.setSquare(shiftBoard, "h2");
 
+    uint64_t knights = 0;
+    knights = b.setSquare(knights, "a4");
+    b.potentialKnightMoves(knights);
+    b.displayBoard(knights);
+    b.displayBoard(b.getKnightMovement());
+
     
-    shiftBoard = b.shiftUp(shiftBoard);
-    
-    b.displayBoard(whitePieces);
-    whitePieces = b.shiftLeft(whitePieces);
-    b.displayBoard(whitePieces);
     
 
     return 0;

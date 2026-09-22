@@ -149,7 +149,7 @@ uint64_t Board::shiftRight(uint64_t board){
 
 
 
-//getters for the A and H files
+//getters for the different private bitboards
 uint64_t Board::getA_File(){
 
     return A_FILE;
@@ -162,5 +162,116 @@ uint64_t Board:: getH_File(){
 
 }//end getH_File
 
+uint64_t Board::getKingMovement(){
+
+    return kingMovement;
+
+}//end getKingMovement
+
+uint64_t Board::getKnightMovement(){
+
+    return knightMovement;
+
+}//end getKnightMovement
+
+
+
+//This method will set the possible movements for the king given a position
+void Board::potentialKingMoves(uint64_t kings){
+
+    //First we must make a copy of the king board so that the original configuration isn't altered
+    uint64_t kingCopy = kings;
+    kingMovement = 0;
+
+    //We will shift it in 8 different ways, apply these changes to kingMovement, and then revert the copy back to the original
+    kingCopy = shiftLeft(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftRight(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftUp(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftDown(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+
+    //Now for the diagonals
+    kingCopy = shiftLeft(kingCopy);
+    kingCopy = shiftUp(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftLeft(kingCopy);
+    kingCopy = shiftDown(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftRight(kingCopy);
+    kingCopy = shiftUp(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+    kingCopy = shiftRight(kingCopy);
+    kingCopy = shiftDown(kingCopy);
+    kingMovement = kingMovement | kingCopy;
+    kingCopy = kings;
+
+}//end potentialKingMoves
+
+//Now we will do the same for knight movements
+void Board::potentialKnightMoves(uint64_t knights){
+
+    uint64_t knightCopy = knights;
+    knightMovement = 0;
+
+    //Knights move in an L shape, which can be configured in 8 different ways
+    knightCopy = shiftUp(knightCopy);
+    knightCopy = shiftUp(knightCopy);
+    knightCopy = shiftRight(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftUp(knightCopy);
+    knightCopy = shiftUp(knightCopy);
+    knightCopy = shiftLeft(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftDown(knightCopy);
+    knightCopy = shiftDown(knightCopy);
+    knightCopy = shiftLeft(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftDown(knightCopy);
+    knightCopy = shiftDown(knightCopy);
+    knightCopy = shiftRight(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftRight(knightCopy);
+    knightCopy = shiftRight(knightCopy);
+    knightCopy = shiftUp(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftRight(knightCopy);
+    knightCopy = shiftRight(knightCopy);
+    knightCopy = shiftDown(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftLeft(knightCopy);
+    knightCopy = shiftLeft(knightCopy);
+    knightCopy = shiftUp(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+    knightCopy = knights;
+    knightCopy = shiftLeft(knightCopy);
+    knightCopy = shiftLeft(knightCopy);
+    knightCopy = shiftDown(knightCopy);
+    knightMovement = knightMovement | knightCopy;
+
+
+}//end potentialKnightMoves
 
 
