@@ -95,13 +95,17 @@ int main(){
 
     */
 
+    Board b;
+
+    /*
+
     uint64_t board = 0;
 
     
     board = board | (1ULL << 35);
     board = board | (1ULL << 62);
     
-    Board b;
+    
     
     uint64_t whitePieces = 0;
     whitePieces = b.setSquare(whitePieces, "e3");
@@ -124,14 +128,29 @@ int main(){
     shiftBoard = b.setSquare(shiftBoard, "g2");
     shiftBoard = b.setSquare(shiftBoard, "h2");
 
-    uint64_t knights = 0;
-    knights = b.setSquare(knights, "a4");
-    b.potentialKnightMoves(knights);
-    b.displayBoard(knights);
-    b.displayBoard(b.getKnightMovement());
+    */
 
-    
-    
+    /*
+    uint64_t bishops = 0;
+    bishops = b.setSquare(bishops, "a1");
+    b.potentialBishopMoves(bishops);
+    b.displayBoard(bishops);
+    b.displayBoard(b.getBishopMovement());
+    */
+
+    /*
+    uint64_t rooks = 0;
+    rooks = b.setSquare(rooks, "a5");
+    b.potentialRookMoves(rooks);
+    b.displayBoard(rooks);
+    b.displayBoard(b.getRookMovement());
+    */
+
+    uint64_t queens = 0;
+    queens = b.setSquare(queens, "e4");
+    b.potentialQueenMoves(queens);
+    b.displayBoard(queens);
+    b.displayBoard(b.getQueenMovement());
 
     return 0;
 

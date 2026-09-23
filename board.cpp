@@ -174,6 +174,23 @@ uint64_t Board::getKnightMovement(){
 
 }//end getKnightMovement
 
+uint64_t Board::getBishopMovement(){
+
+    return bishopMovement;
+
+}//end getBishopMovement
+
+uint64_t Board::getRookMovement(){
+
+    return rookMovement;
+
+}//end getRookMovement
+
+uint64_t Board::getQueenMovement(){
+
+    return queenMovement;
+
+}//end getQueenMovement
 
 
 //This method will set the possible movements for the king given a position
@@ -273,5 +290,178 @@ void Board::potentialKnightMoves(uint64_t knights){
 
 
 }//end potentialKnightMoves
+
+//The bishop, rook, and queen are sliding pieces, so the potential destination logic they have will be 
+//different than the king and knight
+void Board::potentialBishopMoves(uint64_t bishops){
+
+    uint64_t bishopCopy = bishops;
+    bishopMovement = 0;
+
+    //We will shift the bishop bitboard diagonally 7 times in four directions to ensure all possible
+    //squares are reached
+    for(int i = 0; i < 7; i++){
+
+        bishopCopy = shiftUp(bishopCopy);
+        bishopCopy = shiftRight(bishopCopy);
+        bishopMovement |= bishopCopy;
+
+    }//end for loop
+
+    bishopCopy = bishops;
+
+    for(int i = 0; i < 7; i++){
+
+        bishopCopy = shiftUp(bishopCopy);
+        bishopCopy = shiftLeft(bishopCopy);
+        bishopMovement |= bishopCopy;
+
+    }//end for loop
+
+    bishopCopy = bishops;
+
+    for(int i = 0; i < 7; i++){
+
+        bishopCopy = shiftDown(bishopCopy);
+        bishopCopy = shiftLeft(bishopCopy);
+        bishopMovement |= bishopCopy;
+
+    }//end for loop
+
+    bishopCopy = bishops;
+
+    for(int i = 0; i < 7; i++){
+
+        bishopCopy = shiftDown(bishopCopy);
+        bishopCopy = shiftRight(bishopCopy);
+        bishopMovement |= bishopCopy;
+
+    }//end for loop
+
+
+}//end potentialBishopMoves
+
+void Board::potentialRookMoves(uint64_t rooks){
+
+    uint64_t rookCopy = rooks;
+    rookMovement = 0;
+
+    for(int i = 0; i < 7; i++){
+
+        rookCopy = shiftUp(rookCopy);
+        rookMovement |= rookCopy;
+
+    }//end for loop
+
+    rookCopy = rooks;
+
+    for(int i = 0; i < 7; i++){
+
+        rookCopy = shiftDown(rookCopy);
+        rookMovement |= rookCopy;
+
+    }//end for loop
+
+    rookCopy = rooks;
+
+    for(int i = 0; i < 7; i++){
+
+        rookCopy = shiftLeft(rookCopy);
+        rookMovement |= rookCopy;
+
+    }//end for loop
+
+    rookCopy = rooks;
+
+    for(int i = 0; i < 7; i++){
+
+        rookCopy = shiftRight(rookCopy);
+        rookMovement |= rookCopy;
+
+    }//end for loop
+
+}//end potentialRookMoves
+
+//For the queens, we simply must do everything a rook and bishop can do in terms of movement
+void Board::potentialQueenMoves(uint64_t queens){
+
+    uint64_t queenCopy = queens;
+    queenMovement = 0;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftUp(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftDown(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftLeft(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftRight(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftUp(queenCopy);
+        queenCopy = shiftLeft(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftUp(queenCopy);
+        queenCopy = shiftRight(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+    
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftDown(queenCopy);
+        queenCopy = shiftRight(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+    queenCopy = queens;
+
+    for(int i = 0; i < 7; i++){
+
+        queenCopy = shiftDown(queenCopy);
+        queenCopy = shiftLeft(queenCopy);
+        queenMovement |= queenCopy;
+
+    }//end for loop
+
+}//end potentialQueenMoves
 
 
