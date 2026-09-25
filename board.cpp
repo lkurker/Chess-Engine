@@ -12,6 +12,41 @@ Board::Board(){
 
     }//end for loop
 
+    //Setting up the chess board to its normal configuration
+    for(int i = 0; i < 8; i++){
+
+        whitePawns = whitePawns | 1ULL << (8 + i);
+        blackPawns = blackPawns | 1ULL << (48 + i);
+
+    }
+
+    //Now to set the rest of the pieces at their specific spots
+    whiteRooks = whiteRooks | 1ULL << 0;
+    whiteRooks = whiteRooks | 1ULL << 7;
+    blackRooks = blackRooks | 1ULL << 56;
+    blackRooks = blackRooks | 1ULL << 63;
+
+    whiteKnights = whiteKnights | 1ULL << 1;
+    whiteKnights = whiteKnights | 1ULL << 6;
+    blackKnights = blackKnights | 1ULL << 57;
+    blackKnights = blackKnights | 1ULL << 62;
+
+    whiteBishops = whiteBishops | 1ULL << 2;
+    whiteBishops = whiteBishops | 1ULL << 5;
+    blackBishops = blackBishops | 1ULL << 58;
+    blackBishops = blackBishops | 1ULL << 61;
+
+    whiteQueens = whiteQueens | 1ULL << 3;
+    whiteKing = whiteKing | 1ULL << 4;
+    blackQueens = blackQueens | 1ULL << 59;
+    blackKing = blackKing | 1ULL << 60;
+
+    whitePieces = whitePawns | whiteKnights | whiteBishops | whiteRooks | whiteQueens | whiteKing;
+    blackPieces = blackPawns | blackKnights | blackBishops | blackRooks | blackQueens | blackKing;
+
+    occupied = whitePieces | blackPieces;
+    empty = ~occupied;
+
 }//end constructor
 
 
@@ -101,17 +136,18 @@ bool Board::isSquareSet(uint64_t board, std::string position){
 }//end isSquareSet
 
 //Getters for returning occupied and empty spaces depending on the bitboards that are passed as parameters
+//These two methods will eventually be deleted. They are here for testing purposes 
 uint64_t Board::getOccupied(uint64_t whitePieces, uint64_t blackPieces){
 
-    uint64_t occupied = whitePieces | blackPieces;
-    return occupied;
+    uint64_t testOccupied = whitePieces | blackPieces;
+    return testOccupied;
 
 }//end getOccupied
 
 uint64_t Board::getEmpty(uint64_t whitePieces, uint64_t blackPieces){
 
-    uint64_t empty = ~(whitePieces | blackPieces);
-    return empty;
+    uint64_t testEmpty = ~(whitePieces | blackPieces);
+    return testEmpty;
 
 }//end getEmpty
 
@@ -191,6 +227,102 @@ uint64_t Board::getQueenMovement(){
     return queenMovement;
 
 }//end getQueenMovement
+
+uint64_t Board::getWhitePawns(){
+
+    return whitePawns;
+
+}
+
+uint64_t Board::getWhiteKnights(){
+
+    return whiteKnights;
+
+}
+
+uint64_t Board::getWhiteBishops(){
+
+    return whiteBishops;
+
+}
+
+uint64_t Board::getWhiteRooks(){
+
+    return whiteRooks;
+
+}
+
+uint64_t Board::getWhiteQueens(){
+
+    return whiteQueens;
+
+}
+
+uint64_t Board::getWhiteKing(){
+
+    return whiteKing;
+
+}
+
+uint64_t Board::getBlackPawns(){
+
+    return blackPawns;
+
+}
+
+uint64_t Board::getBlackKnights(){
+
+    return blackKnights;
+
+}
+
+uint64_t Board::getBlackBishops(){
+
+    return blackBishops;
+
+}
+
+uint64_t Board::getBlackRooks(){
+
+    return blackRooks;
+
+}
+
+uint64_t Board::getBlackQueens(){
+
+    return blackQueens;
+
+}
+
+uint64_t Board::getBlackKing(){
+
+    return blackKing;
+
+}
+
+uint64_t Board::getWhitePieces(){
+
+    return whitePieces;
+
+}
+
+uint64_t Board::getBlackPieces(){
+
+    return blackPieces;
+
+}
+
+uint64_t Board::getOccupied(){
+
+    return occupied;
+
+}
+
+uint64_t Board::getEmpty(){
+
+    return empty;
+
+}
 
 
 //This method will set the possible movements for the king given a position
@@ -443,7 +575,7 @@ void Board::potentialQueenMoves(uint64_t queens){
     }//end for loop
 
     queenCopy = queens;
-    
+
     for(int i = 0; i < 7; i++){
 
         queenCopy = shiftDown(queenCopy);

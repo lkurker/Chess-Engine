@@ -146,12 +146,15 @@ int main(){
     b.displayBoard(b.getRookMovement());
     */
 
+    /*
     uint64_t queens = 0;
     queens = b.setSquare(queens, "e4");
     b.potentialQueenMoves(queens);
     b.displayBoard(queens);
     b.displayBoard(b.getQueenMovement());
+    */
 
+    b.displayBoard(b.getBlackPieces());
     return 0;
 
 }//end main
